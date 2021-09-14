@@ -32,22 +32,23 @@ public class ServicosHospital {
 	}
 	
 	
-	public Hospital atualizaTaxaOcupacao(Long id, HospitalOcupacaoDto hospitalDto) {
+	public HospitalOcupacaoDto atualizaTaxaOcupacao(Long cnpj, HospitalOcupacaoDto hospitalDto) {
 		
 		//Verificando se a taxa de ocupação é válida
-		if(hospitalDto.getTaxaOcupacao() > 100 || hospitalDto.getTaxaOcupacao() < 0) {
+		if(hospitalDto.getTaxaOcupacao() < 100 && hospitalDto.getTaxaOcupacao() > 0) {
 			
-			throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
+			Hospital hospital = repositorioHospital.getById(cnpj);
+			hospital.setTaxaOcupacao(hospitalDto.getTaxaOcupacao());
 			
-		}
-				
+			repositorioHospital.save(hospital);
+			
+			return hospitalDto;
+			
+		}			
 		
-		Hospital hospital = repositorioHospital.getById(id);
-		hospital.setTaxaOcupacao(hospitalDto.getTaxaOcupacao());
 		
-		repositorioHospital.save(hospital);
 		
-		return hospital;
+		throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
 		
 		
 		

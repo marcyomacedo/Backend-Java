@@ -28,11 +28,11 @@ public class ControladorHospital {
 	
 	
 
-	@PatchMapping("v1/api/hospital/{id}")
-    public ResponseEntity<Hospital> atualizaOcupacao(@PathVariable long id, 
-    		@RequestBody HospitalOcupacaoDto hospitalDto) throws Exception{		
+	@PatchMapping("v1/api/hospital/{cnpj}")
+    public ResponseEntity<HospitalOcupacaoDto> atualizaOcupacao(@PathVariable long cnpj, 
+    		@RequestBody HospitalOcupacaoDto hospitalDto){		
 		try {
-            return new ResponseEntity<>(servicoHospital.atualizaTaxaOcupacao(id, hospitalDto), HttpStatus.OK);
+            return new ResponseEntity<>(servicoHospital.atualizaTaxaOcupacao(cnpj, hospitalDto), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
