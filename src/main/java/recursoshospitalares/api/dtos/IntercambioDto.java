@@ -17,6 +17,9 @@ public class IntercambioDto {
 	private int respirador2;
 	private int tomografo2;
 	private int ambulancia2;
+	
+	
+	
 	public Long getCnpjHospital1() {
 		return cnpjHospital1;
 	}
