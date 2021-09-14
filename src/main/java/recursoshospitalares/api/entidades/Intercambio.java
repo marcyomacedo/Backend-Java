@@ -12,7 +12,7 @@ public class Intercambio {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Long idLong;
+	private Long id;
 	
 	//Dados do primeiro hospital	
 	private Long cnpjHospital1;
@@ -33,8 +33,8 @@ public class Intercambio {
 	
 	
 	
-	public Long getIdLong() {
-		return idLong;
+	public Long getId() {
+		return id;
 	}
 	public Long getCnpjHospital1() {
 		return cnpjHospital1;

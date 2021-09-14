@@ -3,6 +3,7 @@ package recursoshospitalares.api.controladores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import recursoshospitalares.api.dtos.HospitalOcupacaoDto;
+import recursoshospitalares.api.dtos.PorcentagemDto;
 import recursoshospitalares.api.entidades.Hospital;
 import recursoshospitalares.api.servicos.ServicosHospital;
 
@@ -36,6 +38,16 @@ public class ControladorHospital {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+	}
+	
+	@GetMapping("v1/api/hospital/porcentagemMaior90")
+	public ResponseEntity<PorcentagemDto> porcentagemMaior90(){
+		return new ResponseEntity<PorcentagemDto>(servicoHospital.hospitalMaior90(), HttpStatus.OK);
+	}
+	
+	@GetMapping("v1/api/hospital/porcentagemMenor90")
+	public ResponseEntity<PorcentagemDto> porcentagemMenor90(){
+		return new ResponseEntity<PorcentagemDto>(servicoHospital.hospitalMenor90(), HttpStatus.OK);
 	}
 
 	

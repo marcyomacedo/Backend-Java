@@ -11,8 +11,12 @@ import recursoshospitalares.api.entidades.Hospital;
 public interface HospitalDAO extends JpaRepository<Hospital, Long>{
 	
 	
-	@Query(value = "SELECT * FROM HOSPITAL h WHERE h.taxaOcupacao > 90",
+	@Query(value = "SELECT * FROM HOSPITAL h WHERE h.TAXA_OCUPACAO > 90",
 			nativeQuery = true)
 	List<Hospital> findAllHospitalGreaterthan90();
+	
+	@Query(value = "SELECT * FROM HOSPITAL h WHERE h.TAXA_OCUPACAO < 90",
+			nativeQuery = true)
+	List<Hospital> findAllHospitalLessthan90();
 
 }
