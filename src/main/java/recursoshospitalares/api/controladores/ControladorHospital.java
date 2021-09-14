@@ -23,19 +23,42 @@ public class ControladorHospital {
 	
 	@PostMapping("v1/api/hospital")
 	public ResponseEntity<Hospital> adicionaHospital(@RequestBody Hospital hospital){
-		return new ResponseEntity<Hospital>(this.servicoHospital.adicionaHospital(hospital), HttpStatus.CREATED);
+		return new ResponseEntity<Hospital>(servicoHospital.adicionaHospital(hospital), HttpStatus.CREATED);
 	}
 	
+	
+
 	@PatchMapping("v1/api/hospital/{id}")
-    public ResponseEntity<Hospital> atualizaOcupacao(@PathVariable Long id,
-    		@RequestBody HospitalOcupacaoDto hospitalDto){
-		
+    public ResponseEntity<Hospital> atualizaOcupacao(@PathVariable long id, 
+    		@RequestBody HospitalOcupacaoDto hospitalDto) throws Exception{		
 		try {
-            return new ResponseEntity<Hospital>(this.servicoHospital.atualizaTaxaOcupacao(id, hospitalDto), HttpStatus.OK);
+            return new ResponseEntity<>(servicoHospital.atualizaTaxaOcupacao(id, hospitalDto), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	public ControladorHospital(ServicosHospital servicoHospital) {
+		super();
+		this.servicoHospital = servicoHospital;
+	}
+
+
+
+	
 	
 	
 	
@@ -56,10 +79,7 @@ public class ControladorHospital {
 	
 	
 
-	public ControladorHospital() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 	
 
