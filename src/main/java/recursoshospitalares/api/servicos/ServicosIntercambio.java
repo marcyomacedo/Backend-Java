@@ -1,5 +1,7 @@
 package recursoshospitalares.api.servicos;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -142,19 +144,16 @@ public class ServicosIntercambio {
 			
 		}
 		
-		throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
+		throw new HttpClientErrorException(HttpStatus.FORBIDDEN);		
+		
+	}
 	
-		
-		
-		
 	
+	public List<Intercambio> historico(){
 		
+		List<Intercambio> hist = repositorioIntercambio.findAll();
 		
-		
-			
-			
-		
-		
+		return hist;
 		
 	}
 	

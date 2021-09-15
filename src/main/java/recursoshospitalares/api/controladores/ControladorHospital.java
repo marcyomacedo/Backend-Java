@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import recursoshospitalares.api.dtos.HospitalOcupacaoDto;
 import recursoshospitalares.api.dtos.PorcentagemDto;
+import recursoshospitalares.api.dtos.RecursosPorHospitalDto;
 import recursoshospitalares.api.entidades.Hospital;
 import recursoshospitalares.api.servicos.ServicosHospital;
 
@@ -49,18 +50,14 @@ public class ControladorHospital {
 	public ResponseEntity<PorcentagemDto> porcentagemMenor90(){
 		return new ResponseEntity<PorcentagemDto>(servicoHospital.hospitalMenor90(), HttpStatus.OK);
 	}
+	
+	
+	@GetMapping("v1/api/hospital/recursoshospitais")
+	public ResponseEntity<RecursosPorHospitalDto> recursosHospitais(){
+		return new ResponseEntity<RecursosPorHospitalDto>(servicoHospital.recursosHospitais(), HttpStatus.OK);
+	}
+	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 
 	public ControladorHospital(ServicosHospital servicoHospital) {

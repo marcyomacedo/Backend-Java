@@ -7,6 +7,7 @@ import org.springframework.web.client.HttpClientErrorException;
 
 import recursoshospitalares.api.dtos.HospitalOcupacaoDto;
 import recursoshospitalares.api.dtos.PorcentagemDto;
+import recursoshospitalares.api.dtos.RecursosPorHospitalDto;
 import recursoshospitalares.api.entidades.Hospital;
 import recursoshospitalares.api.repositorios.HospitalDAO;
 
@@ -88,6 +89,28 @@ public class ServicosHospital {
 		
 		
 		
+	}
+	
+	public RecursosPorHospitalDto recursosHospitais() {
+		
+		int nHospitais = repositorioHospital.findAll().size();
+		
+		int mediaMedicos = repositorioHospital.findAllMedico() / nHospitais;
+		int mediaEnfermeiros = repositorioHospital.findAllEnfermeiro() / nHospitais;
+		int mediaAmbulancias = repositorioHospital.findAllAmbulancia() / nHospitais;
+		int mediaRespiradores = repositorioHospital.findAllRespirador() / nHospitais;
+		int mediaTomografos = repositorioHospital.findAllTomografo() / nHospitais;
+		
+		RecursosPorHospitalDto r = new RecursosPorHospitalDto();
+		
+		r.setAmbulancias(mediaAmbulancias);
+		r.setEnfermeiros(mediaEnfermeiros);
+		r.setMedicos(mediaMedicos);
+		r.setRespiradores(mediaRespiradores);
+		r.setTomografos(mediaTomografos);
+		
+		return r;
+			
 	}
 	
 	
