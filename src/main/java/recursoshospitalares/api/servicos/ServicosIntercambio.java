@@ -26,17 +26,24 @@ public class ServicosIntercambio {
 	
 	public Intercambio realizaIntercambio(IntercambioDto intercambioDto) {
 		
+		//Recuperando o primeiro hospital passado
 		Hospital hospital1 = repositorioHospital.getById(intercambioDto.getCnpjHospital1());
+		
+		//Recuperando o segundo hospital passado
 		Hospital hospital2 = repositorioHospital.getById(intercambioDto.getCnpjHospital2());
 		
+		//Criando o objeto que será preenchido com os dados da negociação
 		Intercambio intercambio = new Intercambio();
 		
+		//Calculando o total de pontos do primeiro hospital
 		int pontosHospital1 = intercambioDto.getAmbulancia1()*10 + intercambioDto.getMedico1()*3 + intercambioDto.getEnfermeiro1()*3
 				+ intercambioDto.getRespirador1()*5 + intercambioDto.getTomografo1()*12;
 		
+		//Calculando o total de pontos do segundo hospital
 		int pontosHospital2 = intercambioDto.getAmbulancia2()*10 + intercambioDto.getMedico2()*3 + intercambioDto.getEnfermeiro2()*3
 				+ intercambioDto.getRespirador2()*5 + intercambioDto.getTomografo2()*12;
 		
+		//Verificando se os pontos são iguais
 		if(pontosHospital1 == pontosHospital2) {
 			
 			//Realizando a subtração de recursos do hospital 1
@@ -89,6 +96,7 @@ public class ServicosIntercambio {
 			//Retornando a operação
 			return intercambio;
 			
+		//Verificando se um dos hospitais possui mais que 90 de taxa de ocupação para realizar a excessão
 		}else if(hospital1.getTaxaOcupacao() > 90 || hospital2.getTaxaOcupacao() > 90) {	
 			
 			
@@ -151,6 +159,7 @@ public class ServicosIntercambio {
 	
 	public List<Intercambio> historico(){
 		
+		//Recuperando uma lista com todas as negociações realizadas
 		List<Intercambio> hist = repositorioIntercambio.findAll();
 		
 		return hist;

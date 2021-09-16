@@ -24,7 +24,7 @@ public class ControladorIntercambio {
 	
 	
 	@PostMapping("v1/api/intercambio")
-	public ResponseEntity<Intercambio> adicionaHospital(@RequestBody IntercambioDto intercambio){
+	public ResponseEntity<Intercambio> realizaIntercambio(@RequestBody IntercambioDto intercambio){
 		
 		try {
 			return new ResponseEntity<Intercambio>(this.servicoIntercambio.realizaIntercambio(intercambio), HttpStatus.CREATED);
